@@ -9,7 +9,9 @@ Then create a new excel file called data.xlsx
 
 The name and extension name should be exactly the same as above. Otherwise the code will not work.
 
-Put all regular pinyin input such as 'zhuan' 'yi' into the first column. Notice: the input should have no special notation including space. Otherwise the code will fail to transcribe.
+Put all regular pinyin input such as 'zhuan' 'yi' into the first column. One word per row.
+
+Notice: the input should have no special notation including space. Otherwise the code will fail to transcribe.
 
 Then run the code.
 
