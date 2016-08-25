@@ -60,6 +60,7 @@ for rn in range(len(rows)):
 	m_Un = re.search('^([jqxy])un$',traditionInput) #yu sound in un; yun handled in the switch branch
 	m_iong = re.search('^([jqx])iong$',traditionInput) #-iong
 	m_iao = re.search('^([bpmdtnljqx])iao$', traditionInput) #-iao
+	m_v = re.search('^([ln]v)$', traditionInput) # lv and nv
 	#special cases
 	m_ya = re.search('^ya$', traditionInput) #ya special case
 	m_ye = re.search('^ye$', traditionInput) #ye special case
@@ -385,6 +386,12 @@ for rn in range(len(rows)):
 		ws.cell(row = rn+1, column = 4).value='ao'
 		ws.cell(row = rn+1, column = 5).value='i'
 		ws.cell(row = rn+1, column = 6).value='au'
+	elif m_v:
+		ws.cell(row = rn+1, column = 2).value=m_v.group(1) 
+		ws.cell(row = rn+1, column = 3).value='0'
+		ws.cell(row = rn+1, column = 4).value='v'
+		ws.cell(row = rn+1, column = 5).value='0'
+		ws.cell(row = rn+1, column = 6).value='v'
 	else:
 		ws.cell(row = rn+1, column = 2).value='###' 
 		ws.cell(row = rn+1, column = 3).value='###'
