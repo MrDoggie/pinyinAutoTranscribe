@@ -30,3 +30,8 @@ error matching will be shown as ###. Go back and make sure your input is correct
 Finally manually copy the result back to your original file. Hopefully this will save you a ton of time and largely improve data's correctness.
 
 This code is originally designed for Brice Roberts' Mandarin Pop Rhyme Project @UCLA
+
+
+===================================
+Aug 25th 
+* Add -v matches. Obviously I forget the cases such as lv and nv. Now I've added them into the file. 
