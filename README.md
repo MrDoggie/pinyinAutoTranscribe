@@ -36,3 +36,7 @@ This code is originally designed for Brice Roberts' Mandarin Pop Rhyme Project @
 Aug 25th 
 * Add -v matches. Obviously I forget the cases such as lv and nv. Now I've added them into the file. 
 * Now you can customize your input file name, your input column number and your output column number easily
+
+===================================
+Aug 27th
+* Fix Bug: en, an, a, o, e, ang, eng, ai, ei sounds without any onset can be transcribed correctly now.
