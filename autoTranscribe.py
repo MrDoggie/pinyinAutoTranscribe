@@ -40,17 +40,17 @@ secondDMRhyme =25
 def transcribe (traditionInput, inputCol, onsetCol, glideCol, rhymeCol, DMGlideCol, DMRhymeCol):
 	m_i1 = re.search('^([zhcsrz]+)i$' , traditionInput) # -i after zh, ch, sh,r,z,c,s
 	m_i2 = re.search('^([bpmdtnljqxy])i$',traditionInput) #-i after 0, b, p,m,d,t,n,j,q,x; y will be handled later 
-	m_a = re.search('^([bpmfdtnlkhzcs]+)a$',traditionInput) #-a
-	m_o = re.search('^([bpmfl]+)o$', traditionInput) #-o
-	m_e = re.search('^([mdtnlkghzcsr]+)e$',traditionInput) #-e
-	m_ai = re.search('^([bpmdtnlkghzcs]+)ai$', traditionInput) #-ai
-	m_ei = re.search('^([bpmfdtnlkghsz]+)ei$',traditionInput) #-ei
-	m_ao = re.search('^([bpmdtnlkghzcsr]+)ao$',traditionInput) #-ao
-	m_ou = re.search('^([pmfdtlkghzcs]+)ou$',traditionInput) #-ou
-	m_an = re.search('^([bpmfdtnlkghzcsr]+)an$',traditionInput) #-an
-	m_en = re.search('^([bpmfdnkghzcsr]+)en$',traditionInput)#-an
-	m_ang = re.search('^([bpmfdtnlkghzcsr]+)ang$', traditionInput) #-ang
-	m_eng = re.search('^([bpmfdtnlkghzcsr]+)eng$',traditionInput) #-eng
+	m_a = re.search('^([bpmfdtnlkhzcs]*)a$',traditionInput) #-a, need to consider a along
+	m_o = re.search('^([bpmfl]*)o$', traditionInput) #-o, need to consider o along
+	m_e = re.search('^([mdtnlkghzcsr]*)e$',traditionInput) #-e, need to consider e along
+	m_ai = re.search('^([bpmdtnlkghzcs]*)ai$', traditionInput) #-ai, need to consider ai along
+	m_ei = re.search('^([bpmfdtnlkghsz]*)ei$',traditionInput) #-ei, need to consider ei along
+	m_ao = re.search('^([bpmdtnlkghzcsr]*)ao$',traditionInput) #-ao, need to consider ao along
+	m_ou = re.search('^([pmfdtlkghzcs]*)ou$',traditionInput) #-ou, need to consider ou along
+	m_an = re.search('^([bpmfdtnlkghzcsr]*)an$',traditionInput) #-an, need to consider an along
+	m_en = re.search('^([bpmfdnkghzcsr]*)en$',traditionInput)#-en, need to consider en along 
+	m_ang = re.search('^([bpmfdtnlkghzcsr]*)ang$', traditionInput) #-ang
+	m_eng = re.search('^([bpmfdtnlkghzcsr]*)eng$',traditionInput) #-eng
 	m_er = re.search('^er$', traditionInput) #er, no other possibility
 	m_ia = re.search('^([dljqx])ia$', traditionInput) #-ia ** TO DO y special case
 	m_ie = re.search('^([bpmdtnljqx])ie$', traditionInput) #-ie 
@@ -106,66 +106,88 @@ def transcribe (traditionInput, inputCol, onsetCol, glideCol, rhymeCol, DMGlideC
 		ws.cell(row = rn+1, column = DMRhymeCol).value='i'
 	elif m_a:
 		ws.cell(row = rn+1, column = onsetCol).value=m_a.group(1) 
+		if m_a.group(1) == '': #consider a along
+			ws.cell(row = rn+1, column = onsetCol).value='0'
 		ws.cell(row = rn+1, column = glideCol).value='0'
 		ws.cell(row = rn+1, column = rhymeCol).value='a'
 		ws.cell(row = rn+1, column = DMGlideCol).value='0'
 		ws.cell(row = rn+1, column = DMRhymeCol).value='a'
 	elif m_o:
 		ws.cell(row = rn+1, column = onsetCol).value=m_o.group(1) 
+		if m_o.group(1) == '': #consider o along
+			ws.cell(row = rn+1, column = onsetCol).value='0'
 		ws.cell(row = rn+1, column = glideCol).value='0'
 		ws.cell(row = rn+1, column = rhymeCol).value='o'
 		ws.cell(row = rn+1, column = DMGlideCol).value='w'
 		ws.cell(row = rn+1, column = DMRhymeCol).value='e'
 	elif m_e:
 		ws.cell(row = rn+1, column = onsetCol).value=m_e.group(1) 
+		if m_e.group(1) == '': #consider e along
+			ws.cell(row = rn+1, column = onsetCol).value='0'
 		ws.cell(row = rn+1, column = glideCol).value='0'
 		ws.cell(row = rn+1, column = rhymeCol).value='e'
 		ws.cell(row = rn+1, column = DMGlideCol).value='0'
 		ws.cell(row = rn+1, column = DMRhymeCol).value='e'
 	elif m_ai:
 		ws.cell(row = rn+1, column = onsetCol).value=m_ai.group(1) 
+		if m_ai.group(1) == '': #consider ai along
+			ws.cell(row = rn+1, column = onsetCol).value='0'
 		ws.cell(row = rn+1, column = glideCol).value='0'
 		ws.cell(row = rn+1, column = rhymeCol).value='ai'
 		ws.cell(row = rn+1, column = DMGlideCol).value='0'
 		ws.cell(row = rn+1, column = DMRhymeCol).value='ai'
 	elif m_ei:
 		ws.cell(row = rn+1, column = onsetCol).value=m_ei.group(1) 
+		if m_ei.group(1) == '': #consider ei along
+			ws.cell(row = rn+1, column = onsetCol).value='0'
 		ws.cell(row = rn+1, column = glideCol).value='0'
 		ws.cell(row = rn+1, column = rhymeCol).value='ei'
 		ws.cell(row = rn+1, column = DMGlideCol).value='0'
 		ws.cell(row = rn+1, column = DMRhymeCol).value='ei'
 	elif m_ao:
 		ws.cell(row = rn+1, column = onsetCol).value=m_ao.group(1) 
+		if m_ao.group(1) == '': # ao along
+			ws.cell(row = rn+1, column = onsetCol).value='0'
 		ws.cell(row = rn+1, column = glideCol).value='0'
 		ws.cell(row = rn+1, column = rhymeCol).value='ao'
 		ws.cell(row = rn+1, column = DMGlideCol).value='0'
 		ws.cell(row = rn+1, column = DMRhymeCol).value='au'
 	elif m_ou:
 		ws.cell(row = rn+1, column = onsetCol).value=m_ou.group(1) 
+		if m_ou.group(1) == '': # ou along
+			ws.cell(row = rn+1, column = onsetCol).value='0'
 		ws.cell(row = rn+1, column = glideCol).value='0'
 		ws.cell(row = rn+1, column = rhymeCol).value='ou'
 		ws.cell(row = rn+1, column = DMGlideCol).value='0'
 		ws.cell(row = rn+1, column = DMRhymeCol).value='eu'
 	elif m_an:
 		ws.cell(row = rn+1, column = onsetCol).value=m_an.group(1) 
+		if m_an.group(1) == '': # an along
+			ws.cell(row = rn+1, column = onsetCol).value='0'
 		ws.cell(row = rn+1, column = glideCol).value='0'
 		ws.cell(row = rn+1, column = rhymeCol).value='an'
 		ws.cell(row = rn+1, column = DMGlideCol).value='0'
 		ws.cell(row = rn+1, column = DMRhymeCol).value='an'
 	elif m_en:
 		ws.cell(row = rn+1, column = onsetCol).value=m_en.group(1) 
+		if m_en.group(1) == '': #en along
+			ws.cell(row = rn+1, column = onsetCol).value='0'
 		ws.cell(row = rn+1, column = glideCol).value='0'
 		ws.cell(row = rn+1, column = rhymeCol).value='en'
 		ws.cell(row = rn+1, column = DMGlideCol).value='0'
 		ws.cell(row = rn+1, column = DMRhymeCol).value='en'
 	elif m_ang:
 		ws.cell(row = rn+1, column = onsetCol).value=m_ang.group(1) 
+		if m_ang.group(1) == '': #ang along
+			ws.cell(row = rn+1, column = onsetCol).value='0'
 		ws.cell(row = rn+1, column = glideCol).value='0'
 		ws.cell(row = rn+1, column = rhymeCol).value='ang'
 		ws.cell(row = rn+1, column = DMGlideCol).value='0'
 		ws.cell(row = rn+1, column = DMRhymeCol).value='ang'
 	elif m_eng:
 		ws.cell(row = rn+1, column = onsetCol).value=m_eng.group(1) 
+		if m_eng.group(1) == '': #eng along
+			ws.cell(row = rn+1, column = onsetCol).value='0'
 		ws.cell(row = rn+1, column = glideCol).value='0'
 		ws.cell(row = rn+1, column = rhymeCol).value='eng'
 		ws.cell(row = rn+1, column = DMGlideCol).value='0'
