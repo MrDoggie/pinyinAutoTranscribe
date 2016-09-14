@@ -46,7 +46,7 @@ def transcribe (traditionInput, inputCol, onsetCol, glideCol, rhymeCol, DMGlideC
 	m_ai = re.search('^([bpmdtnlkghzcs]*)ai$', traditionInput) #-ai, need to consider ai along
 	m_ei = re.search('^([bpmfdtnlkghsz]*)ei$',traditionInput) #-ei, need to consider ei along
 	m_ao = re.search('^([bpmdtnlkghzcsr]*)ao$',traditionInput) #-ao, need to consider ao along
-	m_ou = re.search('^([pmfdtlkghzcs]*)ou$',traditionInput) #-ou, need to consider ou along
+	m_ou = re.search('^([pmfdtlkghzcsr]*)ou$',traditionInput) #-ou, need to consider ou along
 	m_an = re.search('^([bpmfdtnlkghzcsr]*)an$',traditionInput) #-an, need to consider an along
 	m_en = re.search('^([bpmfdnkghzcsr]*)en$',traditionInput)#-en, need to consider en along 
 	m_ang = re.search('^([bpmfdtnlkghzcsr]*)ang$', traditionInput) #-ang
