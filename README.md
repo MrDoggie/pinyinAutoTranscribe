@@ -40,3 +40,6 @@ Aug 25th
 ===================================
 Aug 27th
 * Fix Bug: en, an, a, o, e, ang, eng, ai, ei sounds without any onset can be transcribed correctly now.
+
+===================================
+* Fix Bug: "rou" now can be correctly transcribed.
