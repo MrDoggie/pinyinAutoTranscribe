@@ -34,8 +34,8 @@ This code is originally designed for Brice Roberts' Mandarin Pop Rhyme Project @
 
 ===================================
 Aug 25th 
-* Add -v matches. Obviously I forget the cases such as lv and nv. Now I've added them into the file. 
-* Now you can customize your input file name, your input column number and your output column number easily
+* Fix Bug: Add -v matches. Obviously I forget the cases such as lv and nv. Now I've added them into the file. 
+* Fix Bug: Now you can customize your input file name, your input column number and your output column number easily
 
 ===================================
 Aug 27th
@@ -44,3 +44,9 @@ Aug 27th
 ===================================
 Sep 13th
 * Fix Bug: "rou" now can be correctly transcribed.
+
+===================================
+Sep 25th
+* Fix Bug: "wen" now can be correctly transcribed.
+* Fix Bug: "ga" now can be correctly transcribed.
+* Fix Bug: now both "xve" and "xue", "xvan" and "xuan", "xv" and "xu", "xvn" and "xun" or similar words can be transcribed correctly. 
