@@ -40,13 +40,13 @@ secondDMRhyme =25
 def transcribe (traditionInput, inputCol, onsetCol, glideCol, rhymeCol, DMGlideCol, DMRhymeCol):
 	m_i1 = re.search('^([zhcsrz]+)i$' , traditionInput) # -i after zh, ch, sh,r,z,c,s
 	m_i2 = re.search('^([bpmdtnljqxy])i$',traditionInput) #-i after 0, b, p,m,d,t,n,j,q,x; y will be handled later 
-	m_a = re.search('^([bpmfdtnlkhzcs]*)a$',traditionInput) #-a, need to consider a along
+	m_a = re.search('^([bpmfdtnlkghzcs]*)a$',traditionInput) #-a, need to consider a along
 	m_o = re.search('^([bpmfl]*)o$', traditionInput) #-o, need to consider o along
 	m_e = re.search('^([mdtnlkghzcsr]*)e$',traditionInput) #-e, need to consider e along
 	m_ai = re.search('^([bpmdtnlkghzcs]*)ai$', traditionInput) #-ai, need to consider ai along
 	m_ei = re.search('^([bpmfdtnlkghsz]*)ei$',traditionInput) #-ei, need to consider ei along
 	m_ao = re.search('^([bpmdtnlkghzcsr]*)ao$',traditionInput) #-ao, need to consider ao along
-	m_ou = re.search('^([pmfdtlkghzcsr]*)ou$',traditionInput) #-ou, need to consider ou along
+	m_ou = re.search('^([pmfdtlkghzcs]*)ou$',traditionInput) #-ou, need to consider ou along
 	m_an = re.search('^([bpmfdtnlkghzcsr]*)an$',traditionInput) #-an, need to consider an along
 	m_en = re.search('^([bpmfdnkghzcsr]*)en$',traditionInput)#-en, need to consider en along 
 	m_ang = re.search('^([bpmfdtnlkghzcsr]*)ang$', traditionInput) #-ang
@@ -68,10 +68,10 @@ def transcribe (traditionInput, inputCol, onsetCol, glideCol, rhymeCol, DMGlideC
 	m_un = re.search('^([dtnlkghzcsr]+)un$',traditionInput) #-un
 	m_uang = re.search('^([kghzcs]+)uang$',traditionInput) #-uang
 	m_ong = re.search('^([dtnlkghzcsr]+)ong$',traditionInput) #-ong
-	m_U = re.search('^([jqxy])u$',traditionInput) #yu sound after jqx; yu handled in the switch branch
-	m_Ue = re.search('^([jqxy])ue$',traditionInput) #yu sound in ue; yue handled in the switch branch
-	m_Uan = re.search('^([jqxy])uan$',traditionInput) #yu sound in uan; yuan handled in the switch branch
-	m_Un = re.search('^([jqxy])un$',traditionInput) #yu sound in un; yun handled in the switch branch
+	m_U = re.search('^([jqxy])[uv]$',traditionInput) #yu sound after jqx; yu handled in the switch branch
+	m_Ue = re.search('^([jqxy])[uv]e$',traditionInput) #yu sound in ue; yue handled in the switch branch
+	m_Uan = re.search('^([jqxy])[uv]an$',traditionInput) #yu sound in uan; yuan handled in the switch branch
+	m_Un = re.search('^([jqxy])[uv]n$',traditionInput) #yu sound in un; yun handled in the switch branch
 	m_iong = re.search('^([jqx])iong$',traditionInput) #-iong
 	m_iao = re.search('^([bpmdtnljqx])iao$', traditionInput) #-iao
 	m_v = re.search('^([ln]v)$', traditionInput) # lv and nv
@@ -86,6 +86,7 @@ def transcribe (traditionInput, inputCol, onsetCol, glideCol, rhymeCol, DMGlideC
 	m_wai = re.search('^wai$', traditionInput) #wai SC
 	m_wei = re.search('^wei$', traditionInput) #wei SC
 	m_wan = re.search('^wan$', traditionInput) #wan SC
+	m_wen = re.search('^wen$', traditionInput) #wen SC
 	m_wang = re.search('^wang$', traditionInput) #wang SC
 	m_yong = re.search('^yong$',traditionInput) #yong SC
 	m_yao = re.search('^yao$', traditionInput) #yao SC
@@ -175,6 +176,12 @@ def transcribe (traditionInput, inputCol, onsetCol, glideCol, rhymeCol, DMGlideC
 		ws.cell(row = rn+1, column = glideCol).value='0'
 		ws.cell(row = rn+1, column = rhymeCol).value='en'
 		ws.cell(row = rn+1, column = DMGlideCol).value='0'
+		ws.cell(row = rn+1, column = DMRhymeCol).value='en'
+	elif m_wen:  #wen SC
+		ws.cell(row = rn+1, column = onsetCol).value='0'
+		ws.cell(row = rn+1, column = glideCol).value='u'
+		ws.cell(row = rn+1, column = rhymeCol).value='en'
+		ws.cell(row = rn+1, column = DMGlideCol).value='u'
 		ws.cell(row = rn+1, column = DMRhymeCol).value='en'
 	elif m_ang:
 		ws.cell(row = rn+1, column = onsetCol).value=m_ang.group(1) 
